@@ -1,8 +1,6 @@
 <div align="center">
   <h1>
-    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Bomb.png" alt="Bomba" width="45" height="45" />
     Laboratório de Command Injection
-    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Computer.png" alt="Computador" width="45" height="45" />
   </h1>
 </div>
 
