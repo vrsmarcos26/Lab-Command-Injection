@@ -133,12 +133,12 @@ Aproximar um número redondo de vezes em milissegundos:
                5 pasta(s)   XXX.XXX.XXX.XXX bytes livres
 ```
 
-A exploração foi bem-sucedida\!
+A exploração foi bem-sucedida!
 
-\<details\>
-\<summary\>\<strong\>💡 Análise Técnica da Falha (Write-up)\</strong\>\</summary\>
+<details>
+<summary><strong>💡 Análise Técnica da Falha (Write-up)</strong></summary>
 
-\<br\>
+<br>
 
 A vulnerabilidade ocorre na linha `system("powershell -Command \"ping -n 4 $ip\"")` do arquivo `index.php`.
 
@@ -146,7 +146,7 @@ A vulnerabilidade ocorre na linha `system("powershell -Command \"ping -n 4 $ip\"
 2.  **Concatenação Insegura:** Esse valor é então concatenado diretamente em uma string que será executada como um comando no shell do sistema (`powershell`).
 3.  **Execução do Comando:** A função `system()` do PHP executa a string final. Quando um payload como `127.0.0.1 & dir` é inserido, o shell interpreta o `&` como um separador que permite a execução de um segundo comando (`dir`) logo após a finalização do primeiro (`ping`). É isso que caracteriza a falha de **Command Injection**.
 
-\</details\>
+</details>
 
 -----
 
@@ -160,8 +160,8 @@ Este projeto foi inspirado e baseado nos conceitos e laboratórios práticos do 
 
 Este projeto está sob a licença MIT. Sinta-se à vontade para usar e modificar o código para seus estudos.
 
-\<hr\>
+<hr>
 
-\<p align="center"\>
-Desenvolvido por \<b\>vrsmarcos26\</b\>
-\</p\>
+<p align="center"\>
+Desenvolvido por <b\>vrsmarcos26</b\>
+</p\>
