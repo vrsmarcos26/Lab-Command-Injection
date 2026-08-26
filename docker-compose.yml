@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  aegis-cmd-lab:
+    image: php:8.2-apache
+    container_name: aegis_cmd_injection_lab
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html/
+    restart: unless-stopped
