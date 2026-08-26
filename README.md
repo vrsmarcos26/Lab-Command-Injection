@@ -61,13 +61,14 @@ Para que você possa estudar da forma que for mais conveniente, este laboratóri
 
 #### **Opção 1: Simulador Web (Acesso Imediato)**
 Uma versão 100% Client-Side construída em JavaScript para simular a falha diretamente no seu navegador, sem a necessidade de baixar arquivos ou configurar servidores.
-🔗 **Acesse o simulador aqui:** `[COLOQUE_O_LINK_DO_GITHUB_PAGES_AQUI]`
+
+🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-Command-Injection/simulador/)**
 
 #### **Opção 2: Servidor Linux Real (Via Docker)**
 A experiência de exploração autêntica. Um ambiente isolado onde o Back-end em PHP interage com um sistema operacional real.
 1. Clone o Repositório:
 ```bash
-git clone [https://github.com/vrsmarcos26/Lab-Command-Injection.git](https://github.com/vrsmarcos26/Lab-Command-Injection.git)
+git clone https://github.com/vrsmarcos26/Lab-Command-Injection.git
 cd Lab-Command-Injection
 ```
 2. Suba o ambiente através do Docker:
