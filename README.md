@@ -61,7 +61,7 @@ Este laboratório possui duas formas de execução, permitindo que você estude 
 
 #### **Opção 1: Simulador Web (Estudo Básico)**
 Uma versão interativa e 100% hospedada no GitHub Pages. Ideal para testar payloads básicos diretamente no navegador.
-🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-XSS-Reflected-Pr-tica-Educacional/simulador/)** *(Não esqueça de ajustar o link para o seu repositório)*
+🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-XSS-Reflected-Pr-tica-Educacional/simulador/)**
 
 #### **Opção 2: Servidor Real PHP (CTF Completo - Via Docker)**
 A experiência ofensiva autêntica. O Back-end em PHP gerencia os cookies de sessão reais e os filtros de segurança.
