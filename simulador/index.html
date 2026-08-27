@@ -145,7 +145,7 @@
                     outputText = `PING ${ip.split(';')[0]} (127.0.0.1) 56(84) bytes of data.\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.034 ms\n\nFLAG{c0mm4nd_1nj3ct10n_s1mul4t3d_w3b}`;
                 } 
                 else if (ip.includes("; ls") || ip.includes("&& ls")) {
-                    outputText = `PING ${ip.split(';')[0]} (127.0.0.1) 56(84) bytes of data.\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.015 ms\n\n.:\ntotal 36\ndrwxrwxrwx 1 root root 4096 ago 26 15:00 .\ndrwxrwxrwx 1 root root    0 ago 26 15:00 assets\ndrwxrwxrwx 1 root root    0 ago 26 15:00 flag\n-rwxrwxrwx 1 root root 9941 ago 26 15:15 index.html\ndrwxrwxrwx 1 root root    0 ago 26 15:00 scripts`;
+                    outputText = `PING ${ip.split(';')[0]} (127.0.0.1) 56(84) bytes of data.\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.015 ms\n\n.:\ntotal 36\ndrwxrwxrwx 1 root root 4096 ago 26 15:00 .\ndrwxrwxrwx 1 root root    0 ago 26 15:00 assets\ndrwxrwxrwx 1 root root    0 ago 26 15:00 flag.txt\n-rwxrwxrwx 1 root root 9941 ago 26 15:15 index.html\ndrwxrwxrwx 1 root root    0 ago 26 15:00 scripts`;
                 } 
                 else if (ip === "127.0.0.1" || ip === "localhost") {
                     outputText = `PING ${ip} (127.0.0.1) 56(84) bytes of data.\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.015 ms\n64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.020 ms\n\n--- ${ip} ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss, time 1002ms`;

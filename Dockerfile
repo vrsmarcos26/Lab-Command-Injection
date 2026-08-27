@@ -21,9 +21,10 @@ RUN chown -R www-data:www-data /var/www/html/assets_secretos
 # ---------------------------------------------------------
 RUN useradd -m aegis_admin
 RUN echo "FLAG{2_r3v3rs3_sh3ll_1ns1d3r}" > /home/aegis_admin/flag_02.txt
-# Apenas o usuário aegis_admin e o root podem ler este arquivo
+RUN chmod 755 /home/aegis_admin
+
 RUN chown root:aegis_admin /home/aegis_admin/flag_02.txt
-RUN chmod 640 /home/aegis_admin/flag_02.txt
+RUN chmod 444 /home/aegis_admin/flag_02.txt
 
 # ---------------------------------------------------------
 # FLAG 3: Escalonamento de Privilégios (Root)
