@@ -1,17 +1,17 @@
 <div align="center">
   <h1>
-    Laboratório de Command Injection
+    Laboratório de XSS Refletido (CTF Edition) 🛒🛡️
   </h1>
 </div>
 
 <p align="center">
-  <img alt="Linguagem Principal" src="https://img.shields.io/github/languages/top/vrsmarcos26/Lab-Command-Injection?style=for-the-badge&color=777BB4">
-  <img alt="Licença" src="https://img.shields.io/github/license/vrsmarcos26/Lab-Command-Injection?style=for-the-badge&color=blue">
-  <img alt="Último Commit" src="https://img.shields.io/github/last-commit/vrsmarcos26/Lab-Command-Injection?style=for-the-badge&color=green">
+  <img alt="Linguagem Principal" src="https://img.shields.io/github/languages/top/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=777BB4">
+  <img alt="Licença" src="https://img.shields.io/github/license/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=blue">
+  <img alt="Último Commit" src="https://img.shields.io/github/last-commit/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=green">
 </p>
 
 <p align="center">
-  Um painel de diagnóstico de rede moderno (Aegis Network Monitor) intencionalmente vulnerável a Command Injection, criado para fins educacionais.
+  Uma plataforma de E-commerce (Aegis Pet Market) intencionalmente vulnerável a Cross-Site Scripting (XSS) Refletido, estruturada como uma máquina de CTF em 3 estágios.
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
   <a href="#-objetivos-de-aprendizagem">Objetivos</a> •
   <a href="#-tecnologias-utilizadas">Tecnologias</a> •
   <a href="#-como-acessar-o-laboratório">Como Acessar</a> •
-  <a href="#-exemplo-de-exploração">Exemplo Prático</a> •
+  <a href="#-jornada-de-exploração-ctf">Exploração (CTF)</a> •
   <a href="#-créditos">Créditos</a>
 </p>
 
@@ -27,18 +27,18 @@
 
 ### ⚠️ Aviso Importante
 
-> **Este projeto é intencionalmente vulnerável.** Ele foi criado para fins estritamente educacionais e demonstração de falhas web. **NÃO FAÇA O DEPLOY DA VERSÃO DOCKER EM UM SERVIDOR PÚBLICO OU DE PRODUÇÃO.** Use-o apenas em um ambiente local e controlado.
+> **Este projeto é intencionalmente vulnerável.** Ele foi criado para fins estritamente educacionais e demonstração de falhas web em ambientes controlados. **NÃO FAÇA O DEPLOY DA VERSÃO DOCKER EM UM SERVIDOR PÚBLICO OU DE PRODUÇÃO.**
 
 ---
 
 ### 🎯 Objetivos de Aprendizagem
 
-Este laboratório foi projetado para demonstrar na prática:
+Este laboratório foi projetado para demonstrar vulnerabilidades no lado do cliente (Client-Side) originadas por falhas no processamento do Back-end. Você aprenderá:
 
--   O que é uma vulnerabilidade de **Injeção de Comandos (OS Command Injection)** em ambientes Linux.
--   Como a concatenação de entradas do usuário utilizando operadores de shell (`&&`, `;`, `|`) pode ser explorada para assumir o controle do servidor.
--   O perigo de utilizar funções de execução nativa do PHP, como `shell_exec()`, sem higienizar os dados.
--   A importância de validar rigorosamente as entradas vindas do lado do cliente (Front-end).
+-   A mecânica do **XSS Refletido**, onde entradas maliciosas são devolvidas na resposta HTTP (HTML) sem a devida sanitização.
+-   Técnicas de **Evasão de WAF** focadas no bloqueio de tags explícitas de script.
+-   Ataques de **Roubo de Sessão (Cookie Stealing)** via execução de JavaScript arbitrário.
+-   O uso de XSS para **Phishing e Defacement**, injetando formulários falsos para capturar credenciais de clientes.
 
 ---
 
@@ -57,77 +57,54 @@ Este ambiente foi estruturado utilizando:
 
 ### ⚙️ Como Acessar o Laboratório
 
-Para que você possa estudar da forma que for mais conveniente, este laboratório foi dividido em duas abordagens:
+Este laboratório possui duas formas de execução, permitindo que você estude da maneira mais conveniente:
 
-#### **Opção 1: Simulador Web (Acesso Imediato)**
-Uma versão 100% Client-Side construída em JavaScript para simular a falha diretamente no seu navegador, sem a necessidade de baixar arquivos ou configurar servidores.
+#### **Opção 1: Simulador Web (Estudo Básico)**
+Uma versão interativa e 100% hospedada no GitHub Pages. Ideal para testar payloads básicos diretamente no navegador.
+🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-XSS-Reflected-Pr-tica-Educacional/simulador/)** *(Não esqueça de ajustar o link para o seu repositório)*
 
-🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-Command-Injection/simulador/)**
-
-#### **Opção 2: Servidor Linux Real (Via Docker)**
-A experiência de exploração autêntica. Um ambiente isolado onde o Back-end em PHP interage com um sistema operacional real.
+#### **Opção 2: Servidor Real PHP (CTF Completo - Via Docker)**
+A experiência ofensiva autêntica. O Back-end em PHP gerencia os cookies de sessão reais e os filtros de segurança.
 1. Clone o Repositório:
 ```bash
-git clone https://github.com/vrsmarcos26/Lab-Command-Injection.git
-cd Lab-Command-Injection
+git clone [https://github.com/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional.git](https://github.com/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional.git)
+cd Lab-XSS-Reflected-Pr-tica-Educacional
 ```
-2. Suba o ambiente através do Docker:
+2. Construa e suba o ambiente através do Docker:
+
 ```bash
-docker-compose up -d
+sudo docker-compose up --build -d
 ```
-3. Acesse a aplicação no seu navegador através de: http://localhost:8000
 
-### 🎬 Exemplo de Exploração
+3. Acesse a aplicação no seu navegador: http://localhost:8080
 
-Abaixo, um passo a passo de como a vulnerabilidade pode ser explorada na prática, simulando o comportamento do terminal.
+### 🎬 Jornada de Exploração (CTF)
 
-**1. Interceptando a Rota**
-A aplicação possui um campo que espera um endereço IP. Em vez de enviar uma requisição legítima, utilizamos o operador lógico `&&` do Linux para concatenar um comando de listagem de diretórios (`ls -la -R`) logo após o alvo principal.
+A barra de busca do E-commerce sofre de uma vulnerabilidade clássica. Sua missão é completar os 3 níveis de exploração.
 
-**Payload:** `vrsmarcos26.github.io && ls -la -R`
+#### 🚩 Nível 1: Evasão de WAF
+O servidor possui um filtro básico que bloqueia qualquer tentativa de usar a tag `<script>`.
+Você deve conseguir a execução de código através de atributos baseados em eventos HTML, como `onerror`, `onload` ou `onmouseover`.
+**Exemplo de Payload:** `<img src=x onerror=alert(1)>`
 
-**2. Analisando o Resultado**
-A aplicação executa o ping no domínio, mas imediatamente processa a injeção que mapeia toda a árvore de arquivos do servidor.
+#### 🚩 Nível 2: Cookie Stealing (Roubo de Sessão)
+XSS é muito mais que exibir caixas de alerta. O administrador logou na loja e um cookie de sessão foi gerado. Sua missão é injetar um payload que leia a propriedade do navegador que armazena esses dados.
+**Exemplo de Payload:** `<svg onload=alert(document.cookie)>`
 
-```text
-aegis_admin@srv-01:~$ ping_tool --target vrsmarcos26.github.io && ls -la -R
-
-PING vrsmarcos26.github.io (2606:50c0:8000::153) 56 data bytes
-64 bytes from 2606:50c0:8000::153: icmp_seq=1 ttl=59 time=15.7 ms
-64 bytes from 2606:50c0:8000::153: icmp_seq=2 ttl=59 time=13.5 ms
-
---- vrsmarcos26.github.io ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3004ms
-
-.:
-total 36
-drwxrwxrwx 1 root root 4096 ago 26 15:00 .
-drwxrwxrwx 1 root root 4096 ago 26 15:00 ..
-drwxrwxrwx 1 root root    0 ago 26 15:00 assets
-drwxrwxrwx 1 root root    0 ago 26 15:00 flag
--rwxrwxrwx 1 root root 9941 ago 26 15:15 index.php
--rwxrwxrwx 1 root root 1073 ago 26 15:00 LICENSE
--rwxrwxrwx 1 root root 6459 ago 26 15:00 README.md
-
-./flag:
-total 5
-drwxrwxrwx 1 root root    0 ago 26 15:00 .
-drwxrwxrwx 1 root root 4096 ago 26 15:00 ..
--rwxrwxrwx 1 root root   24 ago 26 15:00 flag.txt
-```
-Ao visualizar a pasta `./flag`, o atacante pode executar um novo payload (como `127.0.0.1; cat flag/flag.txt`) para capturar o objetivo do CTF.
+#### 🚩 Nível 3: Defacement / Phishing
+Os clientes confiam no layout da loja. Para obter a última flag, injete um campo de captura de senha diretamente no meio da página de resultados. Modificar o DOM para enganar usuários é uma tática comum e letal do XSS.
+**Exemplo de Payload:** `<input type="password" placeholder="Confirme sua senha para continuar">`
 
 <details>
 <summary><strong>💡 Análise Técnica da Falha (Write-up)</strong></summary>
 
 <br>
 
-A vulnerabilidade ocorre no núcleo do arquivo `index.php` da versão hospedada no Docker, especificamente nesta linha:
-`$output = shell_exec("ping -c 4 " . $ip);`
+A vulnerabilidade se encontra no arquivo `index.php` do Back-end, que lida com o parâmetro `search`.
 
-1.  **Entrada do Usuário:** A variável `$ip` recebe o valor via método `GET` repassado de forma assíncrona pelo JavaScript do painel visual. A falha existe porque esse dado entra cru (raw), sem nenhuma sanitização (como o uso de `escapeshellarg()`).
-2.  **Concatenação e Execução:** Ao concatenar a variável diretamente na string do terminal, qualquer meta-caractere interpretado pelo shell do Linux (como `;`, `|` ou `&&`) instruirá o sistema operacional a quebrar a linha de execução e inicializar um processo paralelo.
-3.  **Resultado:** A função `shell_exec()` do PHP roda com os privilégios do usuário do servidor web (ex: `www-data`). Quando o atacante injeta `&& ls`, o servidor literalmente executa o `ping` e, se for bem sucedido, executa a listagem dos arquivos internos, caracterizando o **OS Command Injection**.
+1.  **A Origem (Source):** O sistema recebe a entrada do usuário através da superglobal `$_GET['search']`.
+2.  **O Destino (Sink):** O PHP imprime diretamente esse valor no meio da estrutura HTML utilizando um simples bloco de `echo`. 
+3.  **A Falha:** Como o desenvolvedor não utilizou funções de escape e higienização como o `htmlspecialchars()` ou o `htmlentities()`, os caracteres especiais de HTML (`<`, `>`, `"`, `'`) enviados pelo usuário não são convertidos em entidades seguras. O navegador da vítima entende que o código injetado faz parte do código-fonte original da página e o processa ativamente.
 
 </details>
 
@@ -135,7 +112,7 @@ A vulnerabilidade ocorre no núcleo do arquivo `index.php` da versão hospedada 
 
 ### 🙌 Créditos
 
-Este projeto foi inspirado e baseado nos conceitos e laboratórios práticos do **Hacking Club**, uma referência de alta qualidade para o estudo de cibersegurança e exploração web.
+Este projeto foi inspirado nos conceitos práticos de segurança ofensiva do **Hacking Club**, sendo estruturado para o aprimoramento em testes de invasão e pesquisa de vulnerabilidades web.
 
 -----
 
